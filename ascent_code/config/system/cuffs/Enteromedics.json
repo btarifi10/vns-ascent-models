@@ -1,0 +1,181 @@
+{
+  "description": "Approx 3 mm inner diameter cuff, used in Enteromedics VBloc device with KHZ waveform, monopolar",
+  "code": "EM",
+  "instances": [
+    {
+      "type": "CuffFill_Primitive",
+      "label": "Enteromedics Cuff Fill",
+      "def": {
+        "Radius": "R_out_EM+Thk_fill_EM",
+        "Thk": "Thk_fill_EM",
+        "L": "L_EM+2*Thk_fill_EM",
+        "Center": "Center_EM",
+        "x_shift": "0",
+        "y_shift": "0"
+      },
+      "materials": [
+        {
+          "info": "fill",
+          "label_index": 0
+        }
+      ]
+    },
+    {
+      "type": "TubeCuff_Primitive",
+      "label": "Enteromedics Cuff",
+      "def": {
+        "N_holes": "N_holes_EM",
+        "Tube_theta": "Theta_EM",
+        "Center": "Center_EM",
+        "R_in": "R_in_EM",
+        "R_out": "R_out_EM",
+        "Tube_L": "L_EM",
+        "Rot_def": "Rot_def_EM",
+        "D_hole": "D_hole_EM",
+        "Buffer_hole": "Buffer_hole_EM",
+        "L_holecenter_cuffseam": "L_holecenter_cuffseam_EM",
+        "Pitch_holecenter_holecenter": "Pitch_holecenter_holecenter_EM"
+      },
+      "materials": [
+        {
+          "info": "insulator",
+          "label_index": 2
+        }
+      ]
+    },
+    {
+      "type": "RibbonContact_Primitive",
+      "label": "Enteromedics Contact 1",
+      "def": {
+        "Ribbon_thk": "Thk_elec_EM",
+        "Ribbon_z": "L_elec_EM",
+        "R_in": "R_in_EM",
+        "Ribbon_recess": "Recess_EM",
+        "Center": "Center_EM",
+        "Ribbon_theta": "Theta_contact_EM",
+        "Rot_def": "0 [deg]"
+      },
+      "materials": [
+        {
+          "info": "conductor",
+          "label_index": 3
+        },
+        {
+          "info": "recess",
+          "label_index": 4
+        }
+      ]
+    }
+  ],
+  "params": [
+    {
+      "name": "N_holes_EM",
+      "expression": "0",
+      "description": "Can have the value of 1 or 2. Adds conical shaped holes in TubeCuff. If 1 hole, centered longitudinally in cuff. If 2, evenly spaced by Pitch_holecenter_holecenter about longitudinal center of cuff"
+    },
+    {
+      "name": "Theta_EM",
+      "expression": "Theta_contact_EM+((2*(360*arc_ext_EM)/(2*pi*R_in_EM)) [deg])",
+      "description": "Angular coverage of cuff"
+    },
+    {
+      "name": "Center_EM",
+      "expression": "z_nerve/2",
+      "description": "Z-position of cuff center"
+    },
+    {
+      "name": "R_in_EM",
+      "expression": "max(r_nerve+thk_medium_gap_internal_EM,r_cuff_in_pre_EM)",
+      "description": "Cuff inner diameter"
+    },
+    {
+      "name": "R_out_EM",
+      "expression": "R_in_EM+thk_cuff_EM",
+      "description": "Cuff outer diameter"
+    },
+    {
+      "name": "L_EM",
+      "expression": "3*L_elec_EM",
+      "description": "Length of cuff"
+    },
+    {
+      "name": "Rot_def_EM",
+      "expression": "-(360*arc_ext_EM)/(2*pi*R_in_EM)",
+      "description": "Rotates TubeCuff CCW by angle"
+    },
+    {
+      "name": "D_hole_EM",
+      "expression": "NaN",
+      "description": "Diameter of holes in TubeCuff at the surface of the inner diameter"
+    },
+    {
+      "name": "Buffer_hole_EM",
+      "expression": "NaN",
+      "description": "Used so that the cone used to cut hole in the cuff extends half this distance from the inner and outer edge of the part"
+    },
+    {
+      "name": "L_holecenter_cuffseam_EM",
+      "expression": "NaN",
+      "description": "Distance from edge of the cuff seam to the center of the holes"
+    },
+    {
+      "name": "Pitch_holecenter_holecenter_EM",
+      "expression": "NaN",
+      "description": "Distance between cuff holes, pitch from center to center along the length of the cuff"
+    },
+    {
+      "name": "thk_medium_gap_internal_EM",
+      "expression": "10 [um]",
+      "description": "Gap between cuff and nerve"
+    },
+    {
+      "name": "r_cuff_in_pre_EM",
+      "expression": "1.651 [mm]",
+      "description": "Cuff resting inner diameter"
+    },
+    {
+      "name": "thk_cuff_EM",
+      "expression": "1 [mm]",
+      "description": "Cuff thickness"
+    },
+    {
+      "name": "L_elec_EM",
+      "expression": "1.397 [mm]",
+      "description": "Z-length of contact"
+    },
+    {
+      "name": "arc_ext_EM",
+      "expression": "0.5 [mm]",
+      "description": "Length beyond which the cuff extends from the contact on either edge around the circumference"
+    },
+    {
+      "name": "theta_contact_pre_EM",
+      "expression": "256.4287 [deg]",
+      "description": "Angle of the contact before expansion to accommodate the nerve"
+    },
+    {
+      "name": "Theta_contact_EM",
+      "expression": "theta_contact_pre_EM*(r_cuff_in_pre_EM/R_in_EM)",
+      "description": "Angular coverage of contact"
+    },
+    {
+      "name": "Thk_elec_EM",
+      "expression": "0.1 [mm]",
+      "description": "Thickness of contact"
+    },
+    {
+      "name": "Recess_EM",
+      "expression": "0 [mm]",
+      "description": "Depth of fill material into the cuff before the contact. This is used to create an associated recess/fill domain with a contact."
+    },
+    {
+      "name": "Thk_fill_EM",
+      "expression": "100 [um]",
+      "description": "Distance fill extends beyond cuff boundary"
+    }
+  ],
+  "expandable": true,
+  "fixed_point": "clockwise_end",
+  "angle_to_contacts_deg": 128.21,
+  "offset": {}
+}

@@ -1,0 +1,3 @@
+%% Fiber XY Coordinates: X (space) Y
+0 0
+-10 10

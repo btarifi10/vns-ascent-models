@@ -1,0 +1,8 @@
+mock
+myst-parser
+pre-commit
+pytest
+pytest-cov
+sphinx
+sphinx-argparse
+sphinx-rtd-theme
