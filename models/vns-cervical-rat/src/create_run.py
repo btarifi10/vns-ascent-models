@@ -50,8 +50,8 @@ if __name__ == "__main__":
         save_cfg_to_file(sample_cfg, f'{dest}/samples/{i}/sample.json')
 
         # Save model.json files
-        for i, model_json in enumerate(model_cfg):
-            save_cfg_to_file(model_json, f'{dest}/samples/{i}/models/0/model.json')
+        for j, model_json in enumerate(model_cfg):
+            save_cfg_to_file(model_json, f'{dest}/samples/{i}/models/{j}/model.json')
 
         # Save mock_sample json file
         save_cfg_to_file(mock_sample_cfg, f'{dest}/config/user/mock_samples/{i}.json')
