@@ -63,7 +63,7 @@
                 "z": 0
             },
             "index": 0,
-            "preset": "MicroLeads_meas_400_bipolar.json"
+            "preset": "Purdue.json"
         },
         {
             "rotate": {
@@ -76,7 +76,7 @@
                 "z": 0
             },
             "index": 1,
-            "preset": "MicroLeads_meas_400_bipolar.json"
+            "preset": "Purdue.json"
         }
     ],
     "mesh": {

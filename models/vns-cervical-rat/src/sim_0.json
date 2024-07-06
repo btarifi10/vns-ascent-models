@@ -1,8 +1,8 @@
 {
     "pseudonym": "RatVN Sim Myelinated",
-    "n_dimensions": 1,
+    "n_dimensions": 2,
     "active_srcs": {
-        "MicroLeads_meas_400_bipolar.json": [
+        "Purdue.json": [
             [
                 1,
                 -1
@@ -11,7 +11,7 @@
         "cuff_index": 0
     },
     "active_recs": {
-        "MicroLeads_meas_400_bipolar.json": [
+        "Purdue.json": [
             [
                 1,
                 -1
@@ -66,9 +66,7 @@
                 5,
                 10,
                 20,
-                50,
-                100,
-                1000
+		        50
             ],
             "digits": 1
         }
@@ -136,5 +134,11 @@
             "mode": "PERCENT_DIFFERENCE",
             "percent": 1
         }
+    },
+    "supersampled_bases": {
+        "generate": false,
+        "use": false,
+        "dz": 1.0,
+        "source_sim": 1
     }
 }
