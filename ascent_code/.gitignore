@@ -141,6 +141,7 @@ data/
 input/
 output/
 */user/*
+export/
 
 # samples
 *.class*

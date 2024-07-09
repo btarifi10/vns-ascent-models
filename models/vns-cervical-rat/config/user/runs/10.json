@@ -1,0 +1,19 @@
+{
+  "models": [0],
+  "endo_only_solution": true,
+  "recycle_meshes": true,
+  "models_exit_status": [true],
+  "keep": {
+    "bases": true,
+    "debug_geom": true,
+    "mesh": true
+  },
+  "sims": [
+    2,
+    3
+  ],
+  "popup_plots": false,
+  "sample": 0,
+  "pseudonym": "run:Rat-VN-0",
+  "export_behavior": "selective"
+}

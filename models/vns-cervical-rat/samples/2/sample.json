@@ -1,0 +1,25 @@
+{
+    "sample": "Rat-VN-2",
+    "pseudonym": "sample:Rat-VN-2",
+    "sex": "M",
+    "level": "Cervical",
+    "scale": {
+        "scale_bar_length": 200,
+        "shrinkage": 0.2
+    },
+    "boundary_separation": {
+        "fascicles": 0,
+        "nerve": 0
+    },
+    "modes": {
+        "mask_input": "INNERS",
+        "scale_input": "MASK",
+        "nerve": "PRESENT",
+        "deform": "NONE",
+        "ci_perineurium_thickness": "RAT_VN_INHOUSE_200601",
+        "reshape_nerve": "NONE",
+        "shrinkage_definition": "LENGTH_FORWARDS",
+        "contour_approximation": "SIMPLE"
+    },
+    "rotation": 0
+}

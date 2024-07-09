@@ -1,0 +1,5 @@
+{
+    "partition": "default",
+    "jobs_per_array": 10,
+    "memory_per_fiber": 1
+}

@@ -9,12 +9,12 @@ def get_truncated_normal(mean=0, sd=1, low=0, upp=10, size=1):
 
 # Function to calculate semi-minor axis (b) from semi-major axis (a) and area
 def calculate_b(a, area):
-    return area / (np.pi * a)
+    return area / (np.pi * a/2)
 
 # Function to generate nerve and fascicle geometries
 def generate_nerve_histology_samples(n_samples, nerve_mean_diameter, nerve_sd_diameter, fascicle_mean_diameter, fascicle_sd_diameter):
     samples = []
-    min_distance = 10  # Minimum distance between the fascicle and the nerve boundary
+    min_distance = 5  # Minimum distance between the fascicle and the nerve boundary
 
     for _ in range(n_samples):
         while True:
@@ -25,7 +25,7 @@ def generate_nerve_histology_samples(n_samples, nerve_mean_diameter, nerve_sd_di
                 nerve_area = np.pi * nerve_radius ** 2
 
                 # Sample semi-major axis (a) for nerve and calculate semi-minor axis (b)
-                nerve_a = nerve_radius * np.random.uniform(0.9, 1.1)
+                nerve_a = nerve_diameter * np.random.uniform(0.9, 1.1)
                 nerve_b = calculate_b(nerve_a, nerve_area)
 
                 # Generate fascicle diameter and calculate area
@@ -34,7 +34,7 @@ def generate_nerve_histology_samples(n_samples, nerve_mean_diameter, nerve_sd_di
                 fascicle_area = np.pi * fascicle_radius ** 2
 
                 # Sample semi-major axis (a) for fascicle and calculate semi-minor axis (b)
-                fascicle_a = fascicle_radius * np.random.uniform(0.9, 1.1)
+                fascicle_a = fascicle_diameter * np.random.uniform(0.9, 1.1)
                 fascicle_b = calculate_b(fascicle_a, fascicle_area)
 
                 # Ensure fascicle fits inside the nerve considering the minimum distance
@@ -49,8 +49,8 @@ def generate_nerve_histology_samples(n_samples, nerve_mean_diameter, nerve_sd_di
 
         fascicle_x, fascicle_y = 0, 0
         while True:
-            fascicle_x = np.random.uniform(-max_offset_x, max_offset_x)
-            fascicle_y = np.random.uniform(-max_offset_y, max_offset_y)
+            fascicle_x = np.random.uniform(-10, 10)
+            fascicle_y = np.random.uniform(-10, 10)
             if (fascicle_x**2 / (nerve_a - fascicle_a - min_distance)**2 + fascicle_y**2 / (nerve_b - fascicle_b - min_distance)**2) <= 1:
                 break
 

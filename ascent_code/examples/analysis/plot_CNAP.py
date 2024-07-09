@@ -41,4 +41,5 @@ plt.title('Compound Neuron Action Potential')
 plt.xlabel('Time (ms)')
 plt.ylabel(r'signal (${\mu}V$)')
 plt.xlim(left=0, right=4.5)
-plt.show()
+plt.savefig('cnap-test.png')
+
