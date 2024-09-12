@@ -27,16 +27,17 @@ q = Query(
     {
         'partial_matches': False,
         'include_downstream': True,
-        'indices': {'sample': [0], 'model': [0], 'sim': [0]},
+        'indices': {'sample': [10], 'model': [0], 'sim': [5]},
     }
 ).run()
-data = q.sfap_data(fiber_indices, all_fibers=True)
+data = q.sfap_data(fiber_indices, all_fibers=True, amplitudes=list(range(19)))
 
 # CNAP = Summation of all fibers
-cnap = data.groupby(['fiber', 'SFAP_times'])['SFAP0'].sum().reset_index()
+cnap = data.groupby(['fiber', 'SFAP_times'])['SFAP15'].sum().reset_index()
 
 # Generate plot
-sns.lineplot(data=cnap, x='SFAP_times', y='SFAP0', palette='deep')
+plt.figure()
+plt.plot(data['SFAP_times'], data['SFAP15'], palette='deep')
 plt.title('Compound Neuron Action Potential')
 plt.xlabel('Time (ms)')
 plt.ylabel(r'signal (${\mu}V$)')

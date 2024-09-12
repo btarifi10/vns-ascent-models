@@ -1,0 +1,22 @@
+{
+    "cervical": {
+        "nerve_diameter_um": {
+            "mean": 257.6679916153246,
+            "stddev": 23.511355030666994
+        },
+        "fascicle_diameter_um": {
+            "mean": 248.5779005859555,
+            "stddev": 22.88012524115966
+        }
+    },
+    "subdiaphragm": {
+        "nerve_diameter_um": {
+            "mean": 135.1501183859672,
+            "stddev": 13.982127099206624
+        },
+        "fascicle_diameter_um": {
+            "mean": 121.13746725833572,
+            "stddev": 30.45934707914178
+        }
+    }
+}

@@ -9,7 +9,7 @@ def get_truncated_normal(mean=0, sd=1, low=0, upp=10, size=1):
 
 # Function to calculate semi-minor axis (b) from semi-major axis (a) and area
 def calculate_b(a, area):
-    return area / (np.pi * a/2)
+    return 4* area / (np.pi * a)
 
 # Function to generate nerve and fascicle geometries
 def generate_nerve_histology_samples(n_samples, nerve_mean_diameter, nerve_sd_diameter, fascicle_mean_diameter, fascicle_sd_diameter):

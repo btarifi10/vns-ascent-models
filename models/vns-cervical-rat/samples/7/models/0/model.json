@@ -1,7 +1,7 @@
 {
     "modes": {
         "use_ci": true,
-        "cuff_shift": "NONE",
+        "cuff_shift": "AUTO_ROTATION_MIN_CIRCLE_BOUNDARY",
         "rho_perineurium": "RHO_WEERASURIYA"
     },
     "medium": {
@@ -13,13 +13,13 @@
                 "y": 0,
                 "z": 0
             },
-            "length": 80000,
-            "radius": 5000
+            "length": 90000,
+            "radius": 3000
         },
         "proximal": {
             "distant_ground": false,
-            "length": 80000,
-            "radius": 3000
+            "length": 90000,
+            "radius": 2000
         }
     },
     "conductivities": {
@@ -60,7 +60,7 @@
             "shift": {
                 "x": 0,
                 "y": 0,
-                "z": 0
+                "z": -40000
             },
             "index": 0,
             "preset": "Purdue.json"
@@ -73,7 +73,7 @@
             "shift": {
                 "x": 0,
                 "y": 0,
-                "z": 0
+                "z": 40000
             },
             "index": 1,
             "preset": "Purdue.json"

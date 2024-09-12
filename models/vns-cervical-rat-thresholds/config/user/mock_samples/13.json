@@ -1,0 +1,28 @@
+{
+    "global": {
+        "NAME": "Rat-VN-13"
+    },
+    "scalebar_length": 200,
+    "nerve": {
+        "a": 284.13509127341746,
+        "b": 121.5414380691904,
+        "rot": 0
+    },
+    "figure": {
+        "fig_margin": 1.2,
+        "fig_dpi": 1000
+    },
+    "populate": {
+        "mode": "EXPLICIT",
+        "min_fascicle_separation": 5,
+        "Fascicles": [
+            {
+                "centroid_x": -0.8280025364801258,
+                "centroid_y": -0.45267307587158356,
+                "a": 276.47153664899776,
+                "b": 115.79814043740814,
+                "rot": 0
+            }
+        ]
+    }
+}

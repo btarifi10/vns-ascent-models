@@ -24,6 +24,144 @@ from json import JSONDecodeError
 import numpy as np
 import pandas as pd
 
+filter_list = [
+    "0_0_2_0",
+    "0_0_2_1",
+    "0_0_2_2",
+    "0_0_2_3",
+    "0_0_2_4",
+    "0_0_2_5",
+    "0_0_3_0",
+    "0_0_3_1",
+    "0_0_3_2",
+    "0_0_3_3",
+    "0_0_3_4",
+    "0_0_3_5",
+    "1_0_2_0",
+    "1_0_2_1",
+    "1_0_2_2",
+    "1_0_2_3",
+    "1_0_2_4",
+    "1_0_2_5",
+    "1_0_3_0",
+    "1_0_3_1",
+    "1_0_3_2",
+    "1_0_3_3",
+    "1_0_3_30",
+    "1_0_3_33",
+    "1_0_3_4",
+    "1_0_3_5",
+    "1_0_3_6",
+    "2_0_2_0",
+    "2_0_2_1",
+    "2_0_2_2",
+    "2_0_2_3",
+    "2_0_2_4",
+    "2_0_2_5",
+    "2_0_3_0",
+    "2_0_3_1",
+    "2_0_3_2",
+    "2_0_3_3",
+    "2_0_3_4",
+    "2_0_3_5",
+    "3_0_2_0",
+    "3_0_2_1",
+    "3_0_2_2",
+    "3_0_2_3",
+    "3_0_2_4",
+    "3_0_2_5",
+    "3_0_3_0",
+    "3_0_3_1",
+    "3_0_3_2",
+    "3_0_3_3",
+    "3_0_3_4",
+    "3_0_3_5",
+    "3_0_3_9",
+    "4_0_2_0",
+    "4_0_2_1",
+    "4_0_2_2",
+    "4_0_2_3",
+    "4_0_2_4",
+    "4_0_2_5",
+    "4_0_3_0",
+    "4_0_3_1",
+    "4_0_3_2",
+    "4_0_3_3",
+    "4_0_3_4",
+    "4_0_3_5",
+    "5_0_2_0",
+    "5_0_2_1",
+    "5_0_2_2",
+    "5_0_2_3",
+    "5_0_2_4",
+    "5_0_2_5",
+    "5_0_3_0",
+    "5_0_3_1",
+    "5_0_3_10",
+    "5_0_3_2",
+    "5_0_3_3",
+    "5_0_3_4",
+    "5_0_3_5",
+    "5_0_3_6",
+    "5_0_3_7",
+    "5_0_3_9",
+    "6_0_2_0",
+    "6_0_2_1",
+    "6_0_2_2",
+    "6_0_2_3",
+    "6_0_2_4",
+    "6_0_2_5",
+    "6_0_3_0",
+    "6_0_3_1",
+    "6_0_3_11",
+    "6_0_3_2",
+    "6_0_3_3",
+    "6_0_3_4",
+    "6_0_3_5",
+    "6_0_3_9",
+    "7_0_2_0",
+    "7_0_2_1",
+    "7_0_2_2",
+    "7_0_2_3",
+    "7_0_2_4",
+    "7_0_2_5",
+    "7_0_3_0",
+    "7_0_3_1",
+    "7_0_3_2",
+    "7_0_3_3",
+    "7_0_3_4",
+    "7_0_3_5",
+    "7_0_3_6",
+    "8_0_2_0",
+    "8_0_2_1",
+    "8_0_2_2",
+    "8_0_2_3",
+    "8_0_2_4",
+    "8_0_2_5",
+    "8_0_3_0",
+    "8_0_3_1",
+    "8_0_3_2",
+    "8_0_3_3",
+    "8_0_3_4",
+    "8_0_3_5",
+    "8_0_3_6",
+    "8_0_3_8",
+    "8_0_3_9",
+    "9_0_2_0",
+    "9_0_2_1",
+    "9_0_2_2",
+    "9_0_2_3",
+    "9_0_2_4",
+    "9_0_2_5",
+    "9_0_3_0",
+    "9_0_3_1",
+    "9_0_3_2",
+    "9_0_3_3",
+    "9_0_3_4",
+    "9_0_3_5",
+    "9_0_3_8",
+    "9_0_3_9"
+]
 
 # %%Set up parser and top level args
 class ListAction(argparse.Action):
@@ -561,11 +699,29 @@ def cluster_submit(runfibers, sim_name, sim_path, start_path_base):
 #!/bin/bash
 #PBS -N {sim_name}
 #PBS -J {array_indices[0]}-{array_indices[-1]}
-#PBS -l select=1:ncpus=1:mem={mem}gb
-#PBS -l walltime=02:00:00
+#PBS -l select=1:ncpus=1:mem=1gb
+#PBS -l walltime=08:00:00
+#PBS -o /dev/null
+#PBS -e /dev/null
 
 cd $PBS_O_WORKDIR
+export PATH=$PATH:$HOME/nrn/x86_64/bin
+
 bash {start_path_base}${{PBS_ARRAY_INDEX}}.sh
+"""
+        if len(array_indices) == 1:
+            pbs_script_content = f"""
+#!/bin/bash
+#PBS -N {sim_name}
+#PBS -l select=1:ncpus=1:mem=1gb
+#PBS -l walltime=08:00:00
+#PBS -o /dev/null
+#PBS -e /dev/null
+
+cd $PBS_O_WORKDIR
+export PATH=$PATH:$HOME/nrn/x86_64/bin
+
+bash {start_path_base}1.sh
 """
 
         # Write the PBS script to a temporary file
@@ -583,6 +739,7 @@ bash {start_path_base}${{PBS_ARRAY_INDEX}}.sh
             print(exit_data.stdout)
         if exit_data.returncode != 0:
             print(exit_data.stderr)
+            print(pbs_script_content)
             sys.exit('Non-zero exit code during job array submission. Exiting.')
 
         # Allow job to start before removing the PBS script file
@@ -710,6 +867,8 @@ def make_run_sub_list(run_number: int):
                 sim_name_base = f'{sample}_{model}_{sim}_'
                 nsim_list = [x for x in os.listdir(sim_dir) if x.startswith(sim_name_base)]
                 for sim_name in nsim_list:
+                    # if sim_name not in filter_list:
+                    #     continue
                     submit_list[sim_name] = []
 
                     sim_path = os.path.join(sim_dir, sim_name)
